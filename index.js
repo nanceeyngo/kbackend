@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv'); 
 const { getHomePage, farmerWaitlist, getWaitlistPage, getThankYouPage } = require("./controllers/waitlistController"); // Updated to import getWaitlistPage
-const farmerDetails = require("./validators/waitlist");  //  validation schema 
+
 // Import both Waitlist and ContactForm models  
 
 require('dotenv').config(); 
