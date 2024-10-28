@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // Define the schema for the waitlist  
 const waitlistSchema = new mongoose.Schema({  
-    fullName: {  
+    Name: {  
         type: String,  
         unique: true,  
         required: [true, 'What is your full name?'],  
@@ -84,7 +84,8 @@ const waitlistSchema = new mongoose.Schema({
     },  
     referralSource: {  
         type: String,  
-        required: [true, 'How did you hear about Konectar?']  
+        required: [true, 'How did you hear about Konectar?'],  
+        enum: ['linkedin', 'Facebook', 'Instagram ', 'Referral'],  
     },  
     updateAndNotification: {  
         type: Boolean,  

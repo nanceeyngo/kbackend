@@ -21,7 +21,7 @@ const farmerWaitlist = async (req, res, next) => {
     try {  
         // Destructure the request body  
         const {   
-            fullName,   
+            Name,   
             farmName,   
             farmLocation,   
             contactInformation,   
@@ -36,7 +36,7 @@ const farmerWaitlist = async (req, res, next) => {
         } = req.body;  
 
         // Check if the necessary fields are present  
-        if (!fullName || !farmName || !farmLocation ||   
+        if (!Name || !farmName || !farmLocation ||   
             !contactInformation || !typeOfProduce || !farmSize ||   
             !supplyFrequency || !currentDistributionChannels ||   
             !mainChallenge || !additionalOfferings ||   
@@ -58,7 +58,7 @@ const farmerWaitlist = async (req, res, next) => {
 
         // Create new farmer object  
         const newFarmerWaitlist = new Waitlist({  
-            fullName,  
+            Name,  
             farmName,  
             farmLocation,  
             contactInformation,  
@@ -104,7 +104,7 @@ module.exports = {
     getHomePage,  
     farmerWaitlist, 
     getThankYouPage   
-}; 
+};
 
 
 
