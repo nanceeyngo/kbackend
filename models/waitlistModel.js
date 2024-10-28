@@ -5,7 +5,7 @@ const waitlistSchema = new mongoose.Schema({
     username: {  
         type: String,  
         unique: true,  
-        required: [true, 'What is your full name?'],  
+        required: [true, 'What is your user name?'],  
         trim: true  
     },  
     farmname: {  
@@ -47,8 +47,19 @@ const waitlistSchema = new mongoose.Schema({
         required: [true, 'What type of fruits and vegetables do you grow on your farm?'],
     }, 
     supplyfrequency: {  
-        type: String,  
-        enum: ['Twice a week', 'Once a month', 'Others'],  
+        type: Object,  
+        properties:{
+            frequency:{
+                type: String,
+                enum: ['Twice a week', 'Once a month', 'Others'],  
+            },
+            customFrequency:{
+                type: String,
+                requires: function(){
+                    return this.frequency === 'Others'
+                }
+             }
+            }, 
         required: [true, 'How often do you supply fruits and vegetables to buyers/businesses?']  
     },  
     distributionchannels: {  

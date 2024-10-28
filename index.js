@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 
 const path = require('path'); // Import path module for resolving directory paths  
 
-const { getHomePage, farmerWaitlist, getThankYouPage } = require("./controllers/waitlistController"); // Updated to import getWaitlistPage
+const {  farmerWaitlist } = require("./controllers/waitlistController"); // Updated to import getWaitlistPage
 
 // Import both Waitlist and ContactForm models  
 
@@ -29,8 +29,8 @@ app.use(express.static("public"));
 
 
 
-// Get home page   
-app.get("/", getHomePage); 
+/// Get home page   
+//app.get("/", getHomePage); 
 
 
 
@@ -38,7 +38,7 @@ app.get("/", getHomePage);
 app.post("/waitlist", farmerWaitlist);  
 
 // Thank you page  
-app.get("/thankYou", getThankYouPage);
+//app.get("/thankYou", getThankYouPage);
 
 
 app.listen(port, () => {  

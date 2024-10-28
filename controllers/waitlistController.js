@@ -8,12 +8,12 @@ const config = require("../config");  // Assuming you have a configuration file 
 
 
 // controllers/HomeController.js  
-const getHomePage = (req, res) => {  
-    res.json({  
-        message: "Welcome to Konectar",  
-        info: "Join the waitlist to be the first to be updated"  
-    });  
-};  
+//const getHomePage = (req, res) => {  
+    //res.json({  
+       // message: "Welcome to Konectar",  
+       // info: "Join the waitlist to be the first to be updated"  
+    //});  
+//};  
 
 
 // Post a new entry to the waitlist page  
@@ -94,17 +94,17 @@ const farmerWaitlist = async (req, res, next) => {
 };  
 
 // controllers/thankYouController.js  
-const getThankYouPage = (req, res) => {  
-    res.json({  
-        message: "Thank you for joining the waitlist",  
-        redirectLink: process.env.COMMUNITY_LINK
+//const getThankYouPage = (req, res) => {  
+   // res.json({  
+       // message: "Thank you for joining the waitlist",  
+       // redirectLink: process.env.COMMUNITY_LINK
     
-    });  
-};  
+    //});  
+//};  
 module.exports = {  
-    getHomePage,  
+    //getHomePage,  
     farmerWaitlist, 
-    getThankYouPage   
+    //getThankYouPage   
 };
 
 
