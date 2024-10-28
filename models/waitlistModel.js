@@ -2,92 +2,76 @@ const mongoose = require("mongoose");
 
 // Define the schema for the waitlist  
 const waitlistSchema = new mongoose.Schema({  
-    Name: {  
+    username: {  
         type: String,  
         unique: true,  
         required: [true, 'What is your full name?'],  
         trim: true  
     },  
-    farmName: {  
+    farmname: {  
         type: String,  
         unique: true,  
         trim: true,  
         required: [true, 'What is the name of your farm?']  
     },  
     
-    farmLocation: {  
-        type: {  
-            city: {  // Changed field to lowercase  
-                type: String,  
-                required: true   
-            },  
-            state: {  // Changed field to lowercase  
-                type: String,  
-                required: true  
-            },  
-            country: {  // Changed field to lowercase  
-                type: String,  
-                required: true  
-            }  
-        },  
-        required: [true, 'Where is your farm located?']  // Move 'required' property outside the type definition  
+    farmlocation: {  
+        type: String, 
+        required: [true, 'Enter your city,state and country']  
     },  
     
-    contactInformation: {  
-        method: {  
-            type: String,  
-            enum: ['email address', 'phone number'],  
-            required: [true, 'What is the best way to reach you?']  
-        },  
-        email: { type: String },  
-        phoneNumber: {   
-            type: String,  
-            validate: {  
-                validator: function(v) {  
+    contactinformation: {  
+        type:{
+             emailcontact: { type: String },  
+             phoneno: {   
+                 type: String,  
+                 validate: {  
+                     validator: function(v) {  
                     // Validates phone numbers in format (XXX) XXX-XXXX or XXX-XXX-XXXX or XXXXXXXXXX  
                     return /^(1[-\s]?(\(\d{3}\)|\d{3})[-\s]?\d{3}[-\s]?\d{4}|\d{10})$/.test(v);  
-                },  
-                message: props => `${props.value} is not a valid phone number!`  
+                    },  
+                     message: props => `${props.value} is not a valid phone number!`  
             }  
-        }  
+        } 
+    }, 
+    required: [true, 'What is the best way to reach you?']  
     },   
     
-    typeOfProduce: {  
-        type: String,  
-        enum: ['leafy greens', 'stretchy vegetables', 'root vegetables', 'fruiting vegetables', 'cruciferous vegetables'],  
-        required: [true, 'What type of fruits and vegetables do you grow on your farm?']  
-    },   
-
-    farmSize: {  
-        type: String,  
-        enum: ['1-3 ha', '3-5 ha', '5-8 ha', 'Others'],  
+    farmsize: {  
+        type: String,   
         required: [true, 'What is the approximate size of your farm?']  
     },  
-    supplyFrequency: {  
+    typeofproduce: {  
         type: String,  
-        enum: ['twice a week', 'once a month', 'others'],  
+        enum: ['Mango', 'Pawpaw', 'Pineapple', 'Orange', 'Banana', 'Plantain','Avocado', 'Cashew','Guava', 'Coconut', 'Soursop', 'Tangerine', 'Strawberries', 'Blueberries','Blackberries', 'Raspberries', 'Watermelon', 'African Star Apple (Agbalumo/Udara)', 'Apple (Imported)', 'Pumpkin Leaves (Ugu)', 'Spinach (Efo riro)', 'Bitter Leaf', 'Waterleaf', 'okra', 'Garden Egg', 'Tomato', 'Fluted Pumpkin (Ugu)','Cocoyam Leaves', 'Scent Leaf', 'Onion', 'Cabbage', 'Carrot', 'Sweet Potato - Doya', 'Carrots - Karoti', 'Onions - Alubosa', 'Cucumbers - Gambari', 'Red Bell Peppers - Tatase', 'Yellow Bell Peppers', 'Green Bell Peppers', 'Red Habanero Peppers - Ata rodo', 'Yellow Habanero Peppers', 'Green Habanero Peppers', 'Orange Habanero Peppers', 'Broccoli', 'Cabbage - Ewedu Oyibo','Okra - lla', 'Beetroots - Atta Dudu'],  
+        required: [true, 'What type of fruits and vegetables do you grow on your farm?'],
+    }, 
+    supplyfrequency: {  
+        type: String,  
+        enum: ['Twice a week', 'Once a month', 'Others'],  
         required: [true, 'How often do you supply fruits and vegetables to buyers/businesses?']  
     },  
-    currentDistributionChannels: {  
+    distributionchannels: {  
         type: String,  
-        enum: ['local market', 'wholesalers', 'Direct sales'],  
+        enum: ['Local market', 'Wholesalers', 'Direct sales'],  
         required: [true, 'How do you currently distribute your produce?']  
     },  
-    mainChallenge: {  
+      
+    additionalofferings: {  
         type: String,  
-        required: [true, 'What are the main challenges you face in selling your produce to businesses?']  
-    },  
-    additionalOfferings: {  
-        type: String,  
-        enum: ['Organic Certification', 'Value Added Products', 'Farm tours or Educational program', 'Packaging Services'],  
+        enum: ['Organic Certification', 'Farm tours or Educational program','Direct-to-Consumer sales', 'Value Added Products', 'Packaging Services', 'Pesticide-Free Produce'],  
         required: [true, 'Do you offer any additional services or products related to your farm?']  
     },  
-    referralSource: {  
+    referralsource: {  
         type: String,  
         required: [true, 'How did you hear about Konectar?'],  
-        enum: ['linkedin', 'Facebook', 'Instagram ', 'Referral'],  
+        enum: ['Linkedin', 'Facebook', 'Instagram ', 'Friends'],  
     },  
-    updateAndNotification: {  
+    mainchallenges: {  
+        type: String,  
+        required: [true, 'What are the main challenges you face in selling your produce to businesses?']  
+    },
+    receiveupdates: {  
         type: Boolean,  
         default: false  // Updated the default format  
     }  

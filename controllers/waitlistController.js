@@ -21,55 +21,54 @@ const farmerWaitlist = async (req, res, next) => {
     try {  
         // Destructure the request body  
         const {   
-            Name,   
-            farmName,   
-            farmLocation,   
-            contactInformation,   
-            typeOfProduce,   
-            farmSize,   
-            supplyFrequency,   
-            currentDistributionChannels,   
-            mainChallenge,   
-            additionalOfferings,   
-            referralSource,   
-            updateAndNotification   
+            username,   
+            farmname,   
+            farmlocation,  
+            contactinformation,    
+            farmsize,
+            typeofproduce,     
+            supplyfrequency,   
+            distributionchannels,  
+            additionalofferings, 
+            referralsource, 
+            mainchallenges,     
+            receiveupdates  
         } = req.body;  
 
         // Check if the necessary fields are present  
-        if (!Name || !farmName || !farmLocation ||   
-            !contactInformation || !typeOfProduce || !farmSize ||   
-            !supplyFrequency || !currentDistributionChannels ||   
-            !mainChallenge || !additionalOfferings ||   
-            !referralSource) {  
+        if (!username || !farmname || !farmlocation ||   
+            !contactinformation || !farmsize || !typeofproduce ||   
+            !supplyfrequency || !distributionchannels ||   
+            !additionalofferings || !referralsource || !mainchallenges) {  
             throw new ErrorResponse("Missing required fields", 400);  
         }  
 
         // Optional: Additional validation for contactInformation (e.g., email or phone)  
-        if (contactInformation.method === 'phone number' && !contactInformation.phoneNumber) {  
+        if (contactinformation.type === 'phone number' && !contactinformation.phoneno) {  
             throw new ErrorResponse("Phone number is required when the method is phone number.", 400);  
         }  
         
 
         // Check if user already exists  
-        const userExist = await Waitlist.findOne({ farmName });  
+        const userExist = await Waitlist.findOne({ farmname });
         if (userExist) {  
             throw new ErrorResponse("User already exists!", 400);  
         }  
 
         // Create new farmer object  
         const newFarmerWaitlist = new Waitlist({  
-            Name,  
-            farmName,  
-            farmLocation,  
-            contactInformation,  
-            typeOfProduce,  
-            farmSize,  
-            supplyFrequency,  
-            currentDistributionChannels,  
-            mainChallenge,  
-            additionalOfferings,  
-            referralSource,  
-            updateAndNotification  
+            username,   
+            farmname,   
+            farmlocation,  
+            contactinformation,    
+            farmsize,
+            typeofproduce,     
+            supplyfrequency,   
+            distributionchannels,  
+            additionalofferings, 
+            referralsource, 
+            mainchallenges,     
+            receiveupdates 
         });  
 
         // Save new user, farm, and produce  
@@ -77,7 +76,9 @@ const farmerWaitlist = async (req, res, next) => {
 
         
        // Respond with a redirect (if needed) or a message  
-       res.status(201).json({ message: "Successfully added to the waitlist! Visit /thankyou for confirmation." });  
+       res.status(201).json({  message: "Thank you for joining the waitlist",  
+                               redirectLink: process.env.COMMUNITY_LINK
+        });  
 
     } catch (error) {  
         console.error("Error registering new user:", error.message);  
