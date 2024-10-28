@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");  
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv'); 
-const { getHomePage, farmerWaitlist, getWaitlistPage, getThankYouPage } = require("./controllers/waitlistController"); // Updated to import getWaitlistPage
+const { getHomePage, farmerWaitlist, getThankYouPage } = require("./controllers/waitlistController"); // Updated to import getWaitlistPage
 
 // Import both Waitlist and ContactForm models  
 

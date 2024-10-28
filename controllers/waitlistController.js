@@ -102,7 +102,6 @@ const getThankYouPage = (req, res) => {
 };  
 module.exports = {  
     getHomePage,  
-    getWaitlistPage,  
     farmerWaitlist, 
     getThankYouPage   
 }; 
