@@ -31,8 +31,7 @@ app.use(express.static("public"));
 app.get("/", getHomePage); 
 
 
-// Get waitlist page   
-app.get("/waitlist", getWaitlistPage);
+
 
 
 

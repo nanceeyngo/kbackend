@@ -15,12 +15,7 @@ const getHomePage = (req, res) => {
     });  
 };  
 
-// controller/waitlist 
- const getWaitlistPage = (req, res) => {  
-    res.json({  
-        message: "Please fill out the waitlist form",       
-    });  
-};
+
 // Post a new entry to the waitlist page  
 const farmerWaitlist = async (req, res, next) => {  
     try {  
