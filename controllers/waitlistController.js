@@ -65,7 +65,7 @@ const farmerWaitlist = async (req, res, next) => {
         });  
 
         // Save new user, farm, and produce  
-        //await newFarmerWaitlist.save();  
+       // await newFarmerWaitlist.save();  
 
         // Respond with a success message  
         res.status(201).json({  
