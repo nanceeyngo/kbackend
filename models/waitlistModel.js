@@ -47,21 +47,20 @@ const waitlistSchema = new mongoose.Schema({
         required: [true, 'What type of fruits and vegetables do you grow on your farm?'],
     }, 
     supplyfrequency: {  
-        type: Object,  
-        properties:{
-            frequency:{
-                type: String,
-                enum: ['Twice a week', 'Once a month', 'Others'],  
-            },
-            customFrequency:{
-                type: String,
-                requires: function(){
-                    return this.frequency === 'Others'
-                }
-             }
-            }, 
-        required: [true, 'How often do you supply fruits and vegetables to buyers/businesses?']  
+        type: String,  
+        required: true,  
+        enum: ['Twice a week', 'Once a month', 'Others'], // Define the options  
     },  
+    customSupplyfrequency: {  
+        type: String,  
+        validate: {  
+            // Custom validation: allow non-empty only if 'Others' is selected  
+            validator: function(v) {  
+                return this.supplyfrequency !== 'Others' || (v && v.length > 0);  
+            },  
+            message: 'Custom supply frequency is required when "Others" is selected!'  
+                }   
+            },   
     distributionchannels: {  
         type: String,  
         enum: ['Local market', 'Wholesalers', 'Direct sales'],  
